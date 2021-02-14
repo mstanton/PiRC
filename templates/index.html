@@ -10,7 +10,16 @@
 		<h3>DATETIME: {{ time }}</h3>
 		<img src={{ url_for('static', filename='magic.gif')}}/>
 		<div class="picam-container">
-			<img class="picam-feed" src={{ url_for('video_feed') }}/>
+			<img src={{ url_for('video_feed') }} width="50%"/>
 		</div>
+		
+		<!-- <div class="servo-steer-container">
+			<form method="POST" action="test_servo">
+				
+			
+			
+			</form>
+		
+		</div> -->
 	</body>
 </html>

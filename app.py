@@ -3,13 +3,11 @@
 # DESC: Flask app for controlling an RC car.
 
 from flask import Flask, render_template, Response, request
-from camera import VideoCamera
+from camera import Camera
 import time
 import threading
 import os
 import datetime
-
-pi_camera = VideoCamera(flip=True) # flip pi camera if upside down.
 
 app = Flask(__name__, static_folder='static')
 
@@ -33,10 +31,10 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(pi_camera), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
 
 
