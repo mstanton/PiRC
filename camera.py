@@ -1,6 +1,6 @@
 # RPi Camera
 # DATE: 2021-02-11
-# DESCRIPTION: VideoCamera Class - Access the RPi Camera for streaming
+# DESCRIPTION: Access the RPi (v2) Camera for streaming
 
 import time
 import io
