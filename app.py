@@ -2,14 +2,19 @@
 # DATE: 2021-02-11
 # DESC: Flask app for controlling an RC car.
 
-from flask import Flask, render_template, Response, request
+from flask import Flask, jsonify, render_template, Response, request
 from camera import Camera
+from motor import Motor
 import time
 import threading
 import os
 import datetime
 
 app = Flask(__name__, static_folder='static')
+
+motorPin1 = 17
+motorPin2 = 22
+motorPin3 = 25
 
 @app.route("/")
 def index():
@@ -21,6 +26,35 @@ def index():
     }
     
     return render_template('index.html', **templateData)
+
+@app.route("/healthcheck", methods=['GET', 'POST'])
+def healthcheck():
+    #GET method health checker 
+    if request.method == 'GET':
+        msg = {'msg':'ya got the message!'}
+        return jsonify(msg)
+
+    #POST method health check
+    if request.method == 'POST':
+        print(request.get_json())
+        return 'OK', 200
+
+@app.route("/motor/forward", methods=['POST'])
+def driveForward():
+    Motor(motorPin1, motorPin2, motorPin3)
+    while True:
+        Motor.forward(50, 5)
+
+@app.route("/motor/brake", methods=['POST'])
+def brake():
+    Motor(motorPin1, motorPin2, motorPin3)
+    while True:
+        Motor.stop(2)
+
+        # DRIVE DIRECTION 
+# @app.route("/<direction>/<action>")
+# def action(direction, action):
+
 
 def gen(camera):
     # get camera frame

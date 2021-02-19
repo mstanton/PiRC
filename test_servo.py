@@ -1,11 +1,29 @@
-from gpiozero import Servo
-from gpiozero.tools import sin_values
+# Servo Class
+import RPi.GPIO as GPIO
+from time import sleep
 
-servo = Servo(17)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
-def servoTest():
-    print(servo.pulse_width)
-    servo.source = sin_values()
-    servo.source_delay = 0.1
+
+class Servo():
+    def __init__(self,servoPin,pwmValue)
+        self.servoPin = servoPin
+        self.pwmValue = pwmValue
+
+        GPIO.setup(servoPin, GPIO.OUT)
+        self.pwm = GPIO.PWM(self.servoPin, 50)
+
+
+
+# from gpiozero import Servo
+# from gpiozero.tools import sin_values
+
+# servo = Servo(17)
+
+# def servoTest():
+#     print(servo.pulse_width)
+#     servo.source = sin_values()
+#     servo.source_delay = 0.1
    
     
