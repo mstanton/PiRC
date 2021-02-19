@@ -12,9 +12,7 @@ import datetime
 
 app = Flask(__name__, static_folder='static')
 
-motorPin1 = 17
-motorPin2 = 22
-motorPin3 = 25
+motor = Motor(17, 22, 25)
 
 @app.route("/")
 def index():
@@ -39,17 +37,15 @@ def healthcheck():
         print(request.get_json())
         return 'OK', 200
 
-@app.route("/motor/forward", methods=['POST'])
-def driveForward():
-    Motor(motorPin1, motorPin2, motorPin3)
+@app.route("/forward", methods=['POST'])
+def forward():
     while True:
-        Motor.forward(50, 5)
+        motor.forward(50, 5)
 
-@app.route("/motor/brake", methods=['POST'])
+@app.route("/brake", methods=['POST'])
 def brake():
-    Motor(motorPin1, motorPin2, motorPin3)
     while True:
-        Motor.stop(2)
+       motor.stop(2)
 
         # DRIVE DIRECTION 
 # @app.route("/<direction>/<action>")

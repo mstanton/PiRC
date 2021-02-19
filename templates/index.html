@@ -9,10 +9,7 @@
 		<h1>RPi Adventure Time with Python and Flask</h1>
 		<h3>DATETIME: {{ time }}</h3>
 		<img src={{ url_for('static', filename='magic.gif')}}/>
-		<div class="picam-container">
-			<img src={{ url_for('video_feed') }} width="50%"/>
-		</div>
-		
+
 		<div class="servo-steer-container">
 			<form method="POST" action="healthcheck">
 				<label>POST HEALTH CHECK</label>
@@ -21,5 +18,26 @@
 			</form>
 		
 		</div>
+		<div class="servo-steer-container">
+			<form method="POST" action="forward">
+				<label>POST HEALTH CHECK</label>
+				<input type="submit" value="FORWARD"/>
+			
+			</form>
+		
+		</div>
+		<div class="servo-steer-container">
+			<form method="POST" action="brake">
+				<label>POST HEALTH CHECK</label>
+				<input type="submit" value="BRAKE"/>
+			
+			</form>
+		
+		</div>
+		<div class="picam-container">
+			<img src={{ url_for('video_feed') }} width="50%"/>
+		</div>
+		
+	
 	</body>
 </html>
