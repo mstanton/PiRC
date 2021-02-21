@@ -5,14 +5,12 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-
 class Servo():
-    def __init__(self,servoPin,pwmValue)
+    def __init__(self,servoPin,pwmValue):
         self.servoPin = servoPin
-        self.pwmValue = pwmValue
+        self.pwmValue = GPIO.PWM(self.servoPin, 50)
 
-        GPIO.setup(servoPin, GPIO.OUT)
-        self.pwm = GPIO.PWM(self.servoPin, 50)
+        
 
 
 

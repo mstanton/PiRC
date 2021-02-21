@@ -9,6 +9,7 @@ import time
 import threading
 import os
 import datetime
+import psutil
 
 app = Flask(__name__, static_folder='static')
 
@@ -46,6 +47,11 @@ def forward():
 def brake():
     while True:
        motor.stop(2)
+
+@app.route("/pistats")
+def pistats():
+    CPUStats = {'stats': str(psutil.cpu_stats())} 
+    return jsonify(CPUStats)
 
         # DRIVE DIRECTION 
 # @app.route("/<direction>/<action>")
