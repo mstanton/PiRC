@@ -4,12 +4,37 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+		<!-- <script>
+			const servoForm = new FormData();
+			const sPositionField = document.querySelector('input[name="sPosition"]')
+
+			const data = { sPosition: sPositionField }
+
+			fetch('https://example.com/profile', {
+  				method: 'POST', 
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
+			.then(response => response.json())
+			.then(data => {
+			console.log('Success:', data);
+			})
+			.catch((error) => {
+			console.error('Error:', error);
+			});
+		</script> -->
 	</head>
 	<body>
 		<h1>RPi Adventure Time with Python and Flask</h1>
 		<h3>DATETIME: {{ time }}</h3>
 		<img src={{ url_for('static', filename='magic.gif')}}/>
 
+		<form method="POST" action="test_servo">
+			<input type="range" min="1" max="12.5" name="sPosition" /> 
+			<input type="submit" value="submit"/>
+		</form>
 		<div class="servo-steer-container">
 			<form method="POST" action="healthcheck">
 				<label>POST HEALTH CHECK</label>
@@ -20,7 +45,6 @@
 		</div>
 		<div class="servo-steer-container">
 			<form method="POST" action="forward">
-				<label>POST HEALTH CHECK</label>
 				<input type="submit" value="FORWARD"/>
 			
 			</form>
@@ -28,7 +52,6 @@
 		</div>
 		<div class="servo-steer-container">
 			<form method="POST" action="brake">
-				<label>POST HEALTH CHECK</label>
 				<input type="submit" value="BRAKE"/>
 			
 			</form>

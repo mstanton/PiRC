@@ -5,6 +5,7 @@
 from flask import Flask, jsonify, render_template, Response, request
 from camera import Camera
 from motor import Motor
+from servo import Servo
 import time
 import threading
 import os
@@ -12,8 +13,13 @@ import datetime
 import psutil
 
 app = Flask(__name__, static_folder='static')
+app.config['DEBUG'] = True
 
-motor = Motor(17, 22, 25)
+# SET GPIO PINS FOR L298N H-BRIDGE
+motor = Motor(17, 22, 25) 
+
+# SET GPIO PINS FOR STEERING SERVO
+servo = Servo(18) 
 
 @app.route("/")
 def index():
@@ -23,7 +29,7 @@ def index():
         'title' : "RPi Adventure Time with Python &amp; Flask",
         'time' : timeString
     }
-    
+
     return render_template('index.html', **templateData)
 
 @app.route("/healthcheck", methods=['GET', 'POST'])
@@ -48,16 +54,17 @@ def brake():
     while True:
        motor.stop(2)
 
+@app.route("/steering", methods=['POST'])
+def update():
+    sPosition = request.form["sPosition"]
+    servo.updatePosition(float(sPosition))
+
 @app.route("/pistats")
 def pistats():
     CPUStats = {'stats': str(psutil.cpu_stats())} 
     return jsonify(CPUStats)
 
-        # DRIVE DIRECTION 
-# @app.route("/<direction>/<action>")
-# def action(direction, action):
-
-
+# CAMERA FEED #
 def gen(camera):
     # get camera frame
     while True:
