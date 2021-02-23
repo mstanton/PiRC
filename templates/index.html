@@ -3,43 +3,46 @@
 		<title>{{ title }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+		<script src="{{ url_for('static', filename='js/gauge.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 	</head>
 	<body>
-		<h1>RPi Adventure Time with Python and Flask</h1>
-		<h3>DATETIME: {{ time }}</h3>
-		<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
-
-		<form method="POST" action="steering">
-			<input type="range" min="1" max="12.5" name="sPosition" /> 
-			<input type="submit" value="submit"/>
-		</form>
-		<div class="servo-steer-container">
-			<form method="POST" action="healthcheck">
-				<label>POST HEALTH CHECK</label>
-				<input type="submit" value="submit"/>
-			
-			</form>
-		
-		</div>
-		<div class="servo-steer-container">
-			<form method="POST" action="forward">
-				<input type="submit" value="FORWARD"/>
-			
-			</form>
-		
-		</div>
-		<div class="servo-steer-container">
-			<form method="POST" action="brake">
-				<input type="submit" value="BRAKE"/>
-			
-			</form>
-		
-		</div>
 		<div class="picam-container">
-			<img src={{ url_for('video_feed') }} width="50%"/>
-		</div>
+			<img class="picam-img" src={{ url_for('video_feed') }} />
 		
-	
+			<div class="ui-container">
+				<h1>RPi Adventure Time with Python and Flask</h1>
+				<h3>DATETIME: {{ time }}</h3>
+				<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
+
+				<form method="POST" action="steering">
+					<input type="range" min="1" max="12.5" name="sPosition" /> 
+					<input type="submit" value="submit"/>
+				</form>
+				<div class="servo-steer-container">
+					<form method="POST" action="healthcheck">
+						<label>POST HEALTH CHECK</label>
+						<input type="submit" value="submit"/>
+					
+					</form>
+				
+				</div>
+				<div class="servo-steer-container">
+					<form method="POST" action="forward">
+						<input type="submit" value="FORWARD"/>
+					
+					</form>
+				
+				</div>
+				<div class="servo-steer-container">
+					<form method="POST" action="brake">
+						<input type="submit" value="BRAKE"/>
+					
+					</form>
+				
+				</div>
+			
+			</div>
+		</div>
 	</body>
 </html>
