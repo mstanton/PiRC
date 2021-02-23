@@ -3,6 +3,7 @@
 # DESC: Flask app for controlling an RC car.
 
 from flask import Flask, jsonify, render_template, Response, request
+from flask_cors import CORS
 from camera import Camera
 from motor import Motor
 from servo import Servo
@@ -14,6 +15,8 @@ DEBUG = True
 app = Flask(__name__, static_folder='static')
 app.config.from_object(__name__)
 
+# enable CORS
+CORS(app, resources={r'/*': {'origins': '*'}})
 
 # SET GPIO PINS FOR L298N H-BRIDGE
 motor = Motor(17, 22, 25) 
