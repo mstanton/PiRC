@@ -6,14 +6,14 @@ from flask import Flask, jsonify, render_template, Response, request
 from camera import Camera
 from motor import Motor
 from servo import Servo
-import time
-import threading
-import os
 import datetime
-import psutil
+
+# CONFIG
+DEBUG = True
 
 app = Flask(__name__, static_folder='static')
-app.config['DEBUG'] = True
+app.config.from_object(__name__)
+
 
 # SET GPIO PINS FOR L298N H-BRIDGE
 motor = Motor(17, 22, 25) 
@@ -56,11 +56,6 @@ def brake():
 def sUpdate():
     sPosition = request.form["sPosition"]
     servo.updatePosition(float(sPosition))
-
-@app.route("/pistats")
-def pistats():
-    CPUStats = {'stats': str(psutil.cpu_stats())} 
-    return jsonify(CPUStats)
 
 # CAMERA FEED #
 def gen(camera):
