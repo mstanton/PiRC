@@ -15,15 +15,17 @@ class Servo():
     def updatePosition(self,pwmValue):
         self.pwm.ChangeDutyCycle(pwmValue)
         sleep(0.5)
+        self.pwm.ChangeDutyCycle(0)
+        return pwmValue
 
     def reset(self):
         self.pwm.stop()
 
-
 # from gpiozero import Servo
-# from gpiozero.tools import sin_values
-
 # servo = Servo(17)
+
+# class RCServo():
+#     def __init__(self, servoPin):
 
 # def servoTest():
 #     print(servo.pulse_width)

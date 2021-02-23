@@ -11,7 +11,7 @@ class Motor():
         GPIO.setup(self.Enable,GPIO.OUT)
         GPIO.setup(self.In1,GPIO.OUT)
         GPIO.setup(self.In2,GPIO.OUT)
-        self.pwm = GPIO.PWM(self.Enable, 100)
+        self.pwm = GPIO.PWM(self.Enable, 50)
         self.pwm.start(0)
 
     def forward(self,pwmVal=50,t=0):

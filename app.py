@@ -19,7 +19,7 @@ app.config['DEBUG'] = True
 motor = Motor(17, 22, 25) 
 
 # SET GPIO PINS FOR STEERING SERVO
-servo = Servo(18) 
+servo = Servo(19) 
 
 @app.route("/")
 def index():
@@ -46,16 +46,14 @@ def healthcheck():
 
 @app.route("/forward", methods=['POST'])
 def forward():
-    while True:
-        motor.forward(50, 5)
+    motor.forward(50, 5)
 
 @app.route("/brake", methods=['POST'])
 def brake():
-    while True:
-       motor.stop(2)
+    motor.stop(2)
 
 @app.route("/steering", methods=['POST'])
-def update():
+def sUpdate():
     sPosition = request.form["sPosition"]
     servo.updatePosition(float(sPosition))
 
