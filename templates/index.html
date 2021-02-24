@@ -18,10 +18,9 @@
 				<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
 
 				<input id="sPosition" type="range" min="1" max="12.5" name="sPosition" onchange="updateServoPosition();"/> 
-				<!-- <form method="POST" action="steering">
-					<input id="steering" type="range" min="1" max="12.5" name="sPosition" /> 
-					<input type="submit" value="submit"/>
-				</form> -->
+
+				<input id="tPosition" type="range" min="30" max="90" name="tPosition" onchange="updateThrottlePosition();"/>
+				
 				<div class="servo-steer-container">
 					<form method="POST" action="healthcheck">
 						<label>POST HEALTH CHECK</label>

@@ -49,7 +49,12 @@ def healthcheck():
 
 @app.route("/forward", methods=['POST'])
 def forward():
-    motor.forward(50, 5)
+    req = request.get_json()
+    tPositionFloat = float(req['tPosition'])
+    motor.forward(tPositionFloat, 0)
+    res = make_response(jsonify(req), 200)
+    return res
+
 
 @app.route("/brake", methods=['POST'])
 def brake():
