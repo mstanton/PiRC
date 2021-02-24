@@ -2,7 +2,7 @@
 # DATE: 2021-02-11
 # DESC: Flask app for controlling an RC car.
 
-from flask import Flask, jsonify, render_template, Response, request
+from flask import Flask, jsonify, render_template, Response, request, make_response
 from flask_cors import CORS
 from camera import Camera
 from motor import Motor
@@ -57,8 +57,12 @@ def brake():
 
 @app.route("/steering", methods=['POST'])
 def sUpdate():
-    sPosition = request.form["sPosition"]
-    servo.updatePosition(float(sPosition))
+    content = request.get_json()
+    print(content['sPosition'])
+    sPositionFloat = float(content['sPosition'])
+    servo.updatePosition(sPositionFloat)
+    res = make_response(jsonify(content), 200)
+    return res
 
 # CAMERA FEED #
 def gen(camera):
