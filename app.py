@@ -57,11 +57,10 @@ def brake():
 
 @app.route("/steering", methods=['POST'])
 def sUpdate():
-    content = request.get_json()
-    print(content['sPosition'])
-    sPositionFloat = float(content['sPosition'])
+    req = request.get_json()
+    sPositionFloat = float(req['sPosition'])
     servo.updatePosition(sPositionFloat)
-    res = make_response(jsonify(content), 200)
+    res = make_response(jsonify(req), 200)
     return res
 
 # CAMERA FEED #
