@@ -1,4 +1,21 @@
-body { background: #4B0082 }
+body { 
+    background: #4B0082; 
+    position: relative;
+}
+.picam-img {
+    top:0;
+    left:0; 
+    position:fixed; 
+    min-width:60%; 
+}
+
+.ui-container {
+    width: 33%;
+    position:absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
 
 input[type=range][orient=vertical] {
     -webkit-appearance: slider-vertical;
