@@ -4,23 +4,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 		<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-		<script>
-			
-		</script>
 	</head>
 	<body>
 		<div class="picam-container">
 			<img class="picam-img" src={{ url_for('video_feed') }} />
 		
 			<div class="ui-container">
-				<h1>RPi Adventure Time with Python and Flask</h1>
-				<h3>DATETIME: {{ time }}</h3>
+				<!-- <h1>RPi Adventure Time with Python and Flask</h1>
+				<h3>DATETIME: {{ time }}</h3> -->
 				<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
 				<h3>STEERING</h3>
 				<input id="sPosition" type="range" min="1" max="12.5" name="sPosition" onchange="updateServoPosition();"/> 
 				<h3>THROTTLE</h3>
-				<input id="tPosition" orient="vertical" type="range" min="30" max="90" name="tPosition" onchange="updateThrottlePosition();"/>
+				<input id="tPosition" type="range" orient="vertical" min="30" max="90" name="tPosition" onchange="updateThrottle();"/>
 				
+				<button id="eBrake" type="button" onclick="engageBrake();">BRAKE</button>
+
+
 				<div class="servo-steer-container">
 					<form method="POST" action="healthcheck">
 						<label>POST HEALTH CHECK</label>

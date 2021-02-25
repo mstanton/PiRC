@@ -55,10 +55,9 @@ def forward():
     res = make_response(jsonify(req), 200)
     return res
 
-
 @app.route("/brake", methods=['POST'])
 def brake():
-    motor.stop(2)
+    motor.stop(0)
 
 @app.route("/steering", methods=['POST'])
 def sUpdate():
@@ -80,8 +79,5 @@ def gen(camera):
 def video_feed():
     return Response(gen(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
-
-

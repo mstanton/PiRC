@@ -1,3 +1,5 @@
 body { background: #4B0082 }
 
-
+input[type=range][orient=vertical] {
+    -webkit-appearance: slider-vertical;
+}
