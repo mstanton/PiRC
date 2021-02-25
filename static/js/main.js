@@ -1,11 +1,9 @@
+/**
+ * SERVO / STEERING (PWM)
+ */
 function updateServoPosition() {
     let sPosition = document.getElementById("sPosition");
-
-    let data = {
-        sPosition: sPosition.value
-    }
-
-    console.log(data)
+    let data = { sPosition: sPosition.value }
 
     fetch(`${window.origin}/steering`, {
         method: "POST",
@@ -13,31 +11,29 @@ function updateServoPosition() {
         body: JSON.stringify(data),
         cache: "no-cache",
         headers: new Headers({
-        "content-type": "application/json"
+            "content-type": "application/json"
         })
-      })
+    })
     .then(function(response) {
         if (response.status !== 200) {
-        console.log(`Looks like there was a problem. Status code: ${response.status}`);
-        return;
+            console.log(`CODE: ${response.status}`);
+            return;
         }
         response.json().then(function(data) {
-        console.log(data);
+            console.log('RESPONSE: ', data);
         });
     })
     .catch(function(error) {
-        console.log("Fetch error: " + error);
+        console.log("FETCH RQUEST ERROR: " + error);
     });
 }
 
+/**
+ * THROTTLE POSITION (PWM)
+ */
 function updateThrottlePosition() {
     let tPosition = document.getElementById("tPosition");
-
-    let data = {
-        tPosition: tPosition.value
-    }
-
-    console.log('tPosition', data)
+    let data = { tPosition: tPosition.value }
 
     fetch(`${window.origin}/forward`, {
         method: "POST",
@@ -45,19 +41,19 @@ function updateThrottlePosition() {
         body: JSON.stringify(data),
         cache: "no-cache",
         headers: new Headers({
-        "content-type": "application/json"
+            "content-type": "application/json"
         })
-      })
+    })
     .then(function(response) {
         if (response.status !== 200) {
-        console.log(`Looks like there was a problem. Status code: ${response.status}`);
-        return;
+            console.log(`CODE: ${response.status}`);
+            return;
         }
         response.json().then(function(data) {
-        console.log(data);
+            console.log('RESPONSE: ', data);
         });
     })
     .catch(function(error) {
-        console.log("Fetch error: " + error);
+        console.log("FETCH RQUEST ERROR: " + error);
     });
 }

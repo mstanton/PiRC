@@ -16,10 +16,10 @@
 				<h1>RPi Adventure Time with Python and Flask</h1>
 				<h3>DATETIME: {{ time }}</h3>
 				<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
-
+				<h3>STEERING</h3>
 				<input id="sPosition" type="range" min="1" max="12.5" name="sPosition" onchange="updateServoPosition();"/> 
-
-				<input id="tPosition" type="range" min="30" max="90" name="tPosition" onchange="updateThrottlePosition();"/>
+				<h3>THROTTLE</h3>
+				<input id="tPosition" orient="vertical" type="range" min="30" max="90" name="tPosition" onchange="updateThrottlePosition();"/>
 				
 				<div class="servo-steer-container">
 					<form method="POST" action="healthcheck">
@@ -29,13 +29,7 @@
 					</form>
 				
 				</div>
-				<div class="servo-steer-container">
-					<form method="POST" action="forward">
-						
-					
-					</form>
-				
-				</div>
+
 				<div class="servo-steer-container">
 					<form method="POST" action="brake">
 						<input type="submit" value="BRAKE"/>
