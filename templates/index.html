@@ -15,8 +15,10 @@
 				<!-- <img src={{ url_for('static', filename='magic.gif')}}/> -->
 				<h3>STEERING</h3>
 				<input id="sPosition" type="range" min="1" max="12.5" name="sPosition" onchange="updateServoPosition();"/> 
+				<label class="visually-hidden" for="sPosition">Steering</label>
 				<h3>THROTTLE</h3>
 				<input id="tPosition" type="range" orient="vertical" min="30" max="90" name="tPosition" onchange="updateThrottle();"/>
+				<label class="visually-hidden" for="tPosition">Throttle</label>
 				
 				<button id="eBrake" type="button" onclick="engageBrake();">BRAKE</button>
 

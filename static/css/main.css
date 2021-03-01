@@ -2,6 +2,11 @@ body {
     background: #4B0082; 
     position: relative;
 }
+
+.visually-hidden {
+    visibility: hidden;
+}
+
 .picam-img {
     top:0;
     left:0; 
