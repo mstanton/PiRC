@@ -33,7 +33,7 @@ class Camera(object):
             #setup
             camera.resolution = (640, 480)
             camera.hflip = True
-            camera.vflip = False
+            camera.vflip = True
 
             # warm up cam
             camera.start_preview()
