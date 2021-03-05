@@ -9,6 +9,7 @@ from motor import Motor
 from servo import Servo
 import datetime
 from gpiozero import LED
+from signal import pause
 
 # CONFIG
 DEBUG = True
@@ -70,12 +71,26 @@ def sUpdate():
     res = make_response(jsonify(req), 200)
     return res
 
-# @app.route("/hazard_lights", methods=['POST'])
-# def flashHazards():
-#     req = request.get_json()
-#     lampState = req['headLamp']
-
-
+@app.route("/hazard_lamps", methods=['POST'])
+def hazardLamps():
+    req = request.get_json()
+    hazardState = req['hazard']
+    if(hazardState == 'true'):
+        res = make_response(jsonify(head_lamps.is_active), 200)
+        head_lamps.blink();
+        pause();
+        return res
+    else:
+        head_lamps.toggle()
+        res = make_response(jsonify(head_lamps.is_active), 200)
+        return res
+        
+@app.route("/head_lamps", methods=['POST'])
+def headLamps():
+    head_lamps.toggle()
+    pause()
+    res = make_response(jsonify(head_lamps.is_active), 200)
+    return res
 
 # CAMERA FEED #
 def gen(camera):
