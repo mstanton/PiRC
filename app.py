@@ -8,6 +8,7 @@ from camera import Camera
 from motor import Motor
 from servo import Servo
 import datetime
+from gpiozero import LED
 
 # CONFIG
 DEBUG = True
@@ -23,6 +24,8 @@ motor = Motor(17, 22, 25)
 
 # SET GPIO PINS FOR STEERING SERVO
 servo = Servo(19) 
+
+head_lamps = LED(21)
 
 @app.route("/")
 def index():
@@ -66,6 +69,13 @@ def sUpdate():
     servo.updatePosition(sPositionFloat)
     res = make_response(jsonify(req), 200)
     return res
+
+# @app.route("/hazard_lights", methods=['POST'])
+# def flashHazards():
+#     req = request.get_json()
+#     lampState = req['headLamp']
+
+
 
 # CAMERA FEED #
 def gen(camera):
