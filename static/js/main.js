@@ -122,10 +122,38 @@ function updateThrottle() {
  * TOGGLE HEAD LAMPS
  */
  function toggleHeadLamps() {
-    //let hazardLamps = document.getElementById("hazardLamps");
     let data = { headLamps: 'true' }
 
     fetch(`${window.origin}/head_lamps`, {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(data),
+        cache: "no-cache",
+        headers: new Headers({
+            "content-type": "application/json"
+        })
+    })
+    .then(function(response) {
+        if (response.status !== 200) {
+            console.log(`CODE: ${response.status}`);
+            return;
+        }
+        response.json().then(function(data) {
+            console.log('RESPONSE: ', data);
+        });
+    })
+    .catch(function(error) {
+        console.log("FETCH RQUEST ERROR: " + error);
+    });
+}
+
+/**
+ * TOGGLE GROUND EFFECT CUZ Fast n' Furious
+ */
+ function toggleGroundEFX() {
+    let data = { groundEFX: 'true' }
+
+    fetch(`${window.origin}/ground_efx`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(data),

@@ -28,6 +28,8 @@ servo = Servo(19)
 
 head_lamps = LED(21)
 
+ground_efx = LED(16)
+
 @app.route("/")
 def index():
     now = datetime.datetime.now()
@@ -90,6 +92,13 @@ def headLamps():
     head_lamps.toggle()
     pause()
     res = make_response(jsonify(head_lamps.is_active), 200)
+    return res
+
+@app.route("/ground_efx", methods=['POST'])
+def groundEFX():
+    ground_efx.toggle()
+    pause()
+    res = make_response(jsonify(ground_efx.is_active), 200)
     return res
 
 # CAMERA FEED #
