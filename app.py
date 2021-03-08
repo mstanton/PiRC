@@ -76,14 +76,15 @@ def sUpdate():
 @app.route("/hazard_lamps", methods=['POST'])
 def hazardLamps():
     req = request.get_json()
-    hazardState = req['hazard']
-    if(hazardState == 'true'):
+    if(head_lamps.is_active):
+        head_lamps.toggle()
         res = make_response(jsonify(head_lamps.is_active), 200)
         head_lamps.blink();
         pause();
         return res
     else:
         head_lamps.toggle()
+        pause();
         res = make_response(jsonify(head_lamps.is_active), 200)
         return res
         
